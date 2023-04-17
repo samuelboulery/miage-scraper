@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Exctraction en cours...</h1>
+        <p>Merci de patienter le temps que nous recupérions la donée.</p>
+    </div>
+    <script>
+        async function scrapeAndRedirect() {
+            const productNames = encodeURIComponent('{{../session.productNames}}');
+            const city = encodeURIComponent('{{../session.city}}');
+            try {
+                const response = await fetch(`/scrape?productNames=${productNames}&city=${city}`, { method: 'POST' });
+                if (response.ok) {
+                    window.location.href = '/result';
+                } else {
+                    // Handle error, e.g., show a message to the user
+                    console.error('An error occurred while scraping');
+                }
+            } catch (error) {
+                // Handle network error, e.g., show a message to the user
+                console.error('A network error occurred while scraping:', error);
+            }
+        }
+        scrapeAndRedirect();
+    </script>
+</body>
+
+</html>
