@@ -9,7 +9,7 @@ const csvWriter = createCsvWriter({
         { id: 'Price', title: 'Price' },
         // Add other headers as needed
     ],
-    append: true, // Set this to true so that the CSV writer appends data to the file instead of overwriting it
+    append: false, // Set this to true so that the CSV writer appends data to the file instead of overwriting it
 });
 
 async function scrapeProductData(page, productName) {
